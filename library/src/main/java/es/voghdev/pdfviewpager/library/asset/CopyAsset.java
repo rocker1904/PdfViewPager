@@ -15,11 +15,13 @@
  */
 package es.voghdev.pdfviewpager.library.asset;
 
+import android.support.annotation.NonNull;
+
 public interface CopyAsset {
-    void copy(String assetName, String destinationPath);
+    void copy(@NonNull String assetName, @NonNull String destinationPath);
 
     interface Listener {
-        void success(String assetName, String destinationPath);
+        void success(@NonNull String assetName, @NonNull String destinationPath);
 
         void failure(Exception e);
     }

@@ -18,6 +18,7 @@ package es.voghdev.pdfviewpager.library.adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 
 public class SimpleBitmapPool implements BitmapContainer {
 
@@ -31,7 +32,7 @@ public class SimpleBitmapPool implements BitmapContainer {
 
     private Bitmap.Config config;
 
-    public SimpleBitmapPool(PdfRendererParams params) {
+    public SimpleBitmapPool(@NonNull PdfRendererParams params) {
         this.poolSize = getPoolSize(params.getOffScreenSize());
         this.width = params.getWidth();
         this.height = params.getHeight();

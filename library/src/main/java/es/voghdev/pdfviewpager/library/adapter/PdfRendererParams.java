@@ -16,6 +16,7 @@
 package es.voghdev.pdfviewpager.library.adapter;
 
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 
 public class PdfRendererParams {
     private static final Bitmap.Config DEFAULT_CONFIG = Bitmap.Config.ARGB_8888;
@@ -58,11 +59,11 @@ public class PdfRendererParams {
         this.offScreenSize = offScreenSize;
     }
 
-    public Bitmap.Config getConfig() {
+    @NonNull public Bitmap.Config getConfig() {
         return config;
     }
 
-    public void setConfig(Bitmap.Config config) {
+    public void setConfig(@NonNull Bitmap.Config config) {
         this.config = config;
     }
 }

@@ -16,9 +16,10 @@
 package es.voghdev.pdfviewpager.library.adapter;
 
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 
 public interface BitmapContainer {
-    Bitmap get(int position);
+    @NonNull Bitmap get(int position);
 
     void remove(int position);
 

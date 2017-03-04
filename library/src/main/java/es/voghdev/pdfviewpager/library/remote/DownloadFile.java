@@ -15,13 +15,15 @@
  */
 package es.voghdev.pdfviewpager.library.remote;
 
+import android.support.annotation.NonNull;
+
 public interface DownloadFile {
-    void download(String url, String destinationPath);
+    void download(@NonNull String url, @NonNull String destinationPath);
 
     interface Listener {
-        void onSuccess(String url, String destinationPath);
+        void onSuccess(@NonNull String url, @NonNull String destinationPath);
 
-        void onFailure(Exception e);
+        void onFailure(@NonNull Exception e);
 
         void onProgressUpdate(int progress, int total);
     }

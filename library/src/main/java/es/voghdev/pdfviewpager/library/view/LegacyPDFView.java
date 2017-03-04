@@ -18,6 +18,7 @@ package es.voghdev.pdfviewpager.library.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +41,7 @@ public class LegacyPDFView extends LinearLayout implements DownloadFile.Listener
         init(null);
     }
 
-    public LegacyPDFView(Context context, DownloadFile downloadFile) {
+    public LegacyPDFView(Context context, @NonNull DownloadFile downloadFile) {
         super(context);
         this.downloadFile = downloadFile;
         init(null);
@@ -115,15 +116,15 @@ public class LegacyPDFView extends LinearLayout implements DownloadFile.Listener
         return R.layout.view_legacy_pdf;
     }
 
-    protected TextView getTextView() {
+    @NonNull protected TextView getTextView() {
         return textView;
     }
 
-    protected ProgressBar getProgressBar() {
+    @NonNull protected ProgressBar getProgressBar() {
         return progressBar;
     }
 
-    protected Button getButton() {
+    @NonNull protected Button getButton() {
         return button;
     }
     //end region

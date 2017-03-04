@@ -18,6 +18,7 @@ package es.voghdev.pdfviewpager.library.service;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 
 import java.io.IOException;
 
@@ -34,7 +35,7 @@ public class CopyAssetService extends IntentService {
         super("CopyAssetService");
     }
 
-    public static void startCopyAction(Context context, String asset, String destinationPath) {
+    public static void startCopyAction(Context context, @NonNull String asset, @NonNull String destinationPath) {
         Intent intent = new Intent(context, CopyAssetService.class);
         intent.setAction(ACTION_COPY_ASSET);
         intent.putExtra(EXTRA_ASSET, asset);
