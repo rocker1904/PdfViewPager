@@ -18,7 +18,6 @@ package es.voghdev.pdfviewpager.library.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.pdf.PdfRenderer;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.support.v4.view.PagerAdapter;
@@ -33,6 +32,7 @@ import java.io.IOException;
 import java.net.URI;
 
 import es.voghdev.pdfviewpager.library.R;
+import tv.loilo.pdf.PdfRendererCompat;
 
 public class BasePDFPagerAdapter extends PagerAdapter {
     protected static final int FIRST_PAGE = 0;
@@ -41,7 +41,7 @@ public class BasePDFPagerAdapter extends PagerAdapter {
 
     String pdfPath;
     Context context;
-    PdfRenderer renderer;
+    PdfRendererCompat renderer;
     BitmapContainer bitmapContainer;
     LayoutInflater inflater;
 
@@ -72,7 +72,7 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     @SuppressWarnings("NewApi")
     protected void init() {
         try {
-            renderer = new PdfRenderer(getSeekableFileDescriptor(pdfPath));
+            renderer = new PdfRendererCompat(getSeekableFileDescriptor(pdfPath));
             inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             PdfRendererParams params = extractPdfParamsFromFirstPage(renderer, renderQuality);
             bitmapContainer = new SimpleBitmapPool(params);
@@ -82,8 +82,8 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     }
 
     @SuppressWarnings("NewApi")
-    private PdfRendererParams extractPdfParamsFromFirstPage(PdfRenderer renderer, float renderQuality) {
-        PdfRenderer.Page samplePage = getPDFPage(renderer, FIRST_PAGE);
+    private PdfRendererParams extractPdfParamsFromFirstPage(PdfRendererCompat renderer, float renderQuality) {
+        PdfRendererCompat.Page samplePage = getPDFPage(renderer, FIRST_PAGE);
         PdfRendererParams params = new PdfRendererParams();
 
         params.setRenderQuality(renderQuality);
@@ -131,10 +131,10 @@ public class BasePDFPagerAdapter extends PagerAdapter {
             return v;
         }
 
-        PdfRenderer.Page page = getPDFPage(renderer, position);
+        PdfRendererCompat.Page page = getPDFPage(renderer, position);
 
         Bitmap bitmap = bitmapContainer.get(position);
-        page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
+        page.render(bitmap, null, null, PdfRendererCompat.Page.RENDER_MODE_FOR_DISPLAY);
         page.close();
 
         iv.setImageBitmap(bitmap);
@@ -144,7 +144,7 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     }
 
     @SuppressWarnings("NewApi")
-    protected PdfRenderer.Page getPDFPage(PdfRenderer renderer, int position) {
+    protected PdfRendererCompat.Page getPDFPage(PdfRendererCompat renderer, int position) {
         return renderer.openPage(position);
     }
 

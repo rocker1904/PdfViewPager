@@ -18,7 +18,6 @@ package es.voghdev.pdfviewpager.library.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.RectF;
-import android.graphics.pdf.PdfRenderer;
 import android.support.v4.view.ViewPager;
 import android.util.SparseArray;
 import android.view.View;
@@ -29,6 +28,7 @@ import java.lang.ref.WeakReference;
 
 import es.voghdev.pdfviewpager.library.R;
 import es.voghdev.pdfviewpager.library.util.EmptyClickListener;
+import tv.loilo.pdf.PdfRendererCompat;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class PDFPagerAdapter extends BasePDFPagerAdapter
@@ -55,10 +55,10 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
             return v;
         }
 
-        PdfRenderer.Page page = getPDFPage(renderer, position);
+        PdfRendererCompat.Page page = getPDFPage(renderer, position);
 
         Bitmap bitmap = bitmapContainer.get(position);
-        page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
+        page.render(bitmap, null, null, PdfRendererCompat.Page.RENDER_MODE_FOR_DISPLAY);
         page.close();
 
         PhotoViewAttacher attacher = new PhotoViewAttacher(iv);
